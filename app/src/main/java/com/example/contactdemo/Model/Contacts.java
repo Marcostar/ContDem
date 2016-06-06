@@ -1,7 +1,7 @@
 package com.example.contactdemo.Model;
 
 /**
- * Created by Dzeko on 6/6/2016.
+ * Created by Sagar on 6/6/2016.
  */
 public class Contacts {
     String FirstName, LastName, Email;
@@ -18,6 +18,7 @@ public class Contacts {
 
     }
 
+    // setter and getter methods for all the variables
     public String getFirstName() {
         return FirstName;
     }

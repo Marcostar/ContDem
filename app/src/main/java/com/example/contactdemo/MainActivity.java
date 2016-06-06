@@ -37,7 +37,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        //Listview for contact list
         listView = (ListView) findViewById(R.id.ContactList);
+
+        //Click event for items in the list
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
@@ -48,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
                 int Mobile = ContactList.get(position).getMobileNumber();
                 String Email = ContactList.get(position).getEmail();
 
+                //Alert dialog to show individual item's data
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                 builder.setTitle("Info");
                 builder.setMessage(FirstName+" "+ LastName+"\n"+Mobile+"\n"+Email);
@@ -63,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
         adapter = new ContactAdapter(this,ContactList);
         listView.setAdapter(adapter);
 
+        //volley request to fetch data from API
         JsonObjectRequest request = new JsonObjectRequest(URL, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
@@ -92,10 +98,14 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+        //to avoid request timeout
         request.setRetryPolicy(new DefaultRetryPolicy(4000, 2, 2f));
+        //add this request in the request queue
         MySingleton.getInstance(this).addToRequestQueue(request);
     }
 
+    //for settings but not necessary in this test app
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -103,14 +113,13 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
+    //for setting menu item but not necessary in this app
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
+
         if (id == R.id.action_settings) {
             return true;
         }

@@ -14,8 +14,10 @@ import com.example.contactdemo.R;
 import java.util.ArrayList;
 
 /**
- * Created by Dzeko on 6/6/2016.
+ * Created by Sagar on 6/6/2016.
  */
+
+//Adapter to assign objects to each row of the listview
 public class ContactAdapter extends BaseAdapter {
 
     private Context context;
